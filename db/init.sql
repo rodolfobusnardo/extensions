@@ -76,6 +76,56 @@ INSERT INTO `users` (`username`, `password_hash`, `profile`) VALUES
 ('admin', '\$2y\$10\$DHK9TkhqOrEiZfAl8mqEVeBHUoUt7xDSy.ocHCrYud6.kbYOjJeyK', 'Super-Admin');
 UNLOCK TABLES;
 
+--
+-- Dumping data for table `persons`
+--
+LOCK TABLES `persons` WRITE;
+INSERT INTO `persons` (`name`, `sector_id`) VALUES
+-- Gerência (Sector ID 1) - 10 persons
+('Alice Liddell', 1), ('Bob The Builder', 1), ('Charles Xavier', 1), ('Diana Prince', 1), ('Edward Scissorhands', 1), ('Fiona Gallagher', 1), ('George Jetson', 1), ('Harley Quinn', 1), ('Indiana Jones', 1), ('Jack Sparrow', 1),
+-- NTI (Sector ID 2) - 10 persons
+('Clark Kent', 2), ('Bruce Wayne', 2), ('Peter Parker', 2), ('Tony Stark', 2), ('Steve Rogers', 2), ('Natasha Romanoff', 2), ('Wanda Maximoff', 2), ('Scott Lang', 2), ('Carol Danvers', 2), ('Arthur Curry', 2),
+-- Administrativo (Sector ID 3) - 10 persons
+('Walter White', 3), ('Jesse Pinkman', 3), ('Saul Goodman', 3), ('Mike Ehrmantraut', 3), ('Gus Fring', 3), ('Skyler White', 3), ('Hank Schrader', 3), ('Marie Schrader', 3), ('Badger Mayhew', 3), ('Skinny Pete', 3),
+-- Comunicação (Sector ID 4) - 10 persons
+('Daenerys Targaryen', 4), ('Jon Snow', 4), ('Tyrion Lannister', 4), ('Cersei Lannister', 4), ('Arya Stark', 4), ('Sansa Stark', 4), ('Jaime Lannister', 4), ('Bran Stark', 4), ('Sandor Clegane', 4), ('Theon Greyjoy', 4),
+-- Programação (Sector ID 5) - 10 persons
+('Luke Skywalker', 5), ('Leia Organa', 5), ('Han Solo', 5), ('Darth Vader', 5), ('Obi-Wan Kenobi', 5), ('Yoda', 5), ('R2-D2', 5), ('C-3PO', 5), ('Sheev Palpatine', 5), ('Boba Fett', 5),
+-- Alimentação (Sector ID 6) - 10 persons
+('Harry Potter', 6), ('Hermione Granger', 6), ('Ron Weasley', 6), ('Albus Dumbledore', 6), ('Severus Snape', 6), ('Lord Voldemort', 6), ('Sirius Black', 6), ('Draco Malfoy', 6), ('Rubeus Hagrid', 6), ('Ginny Weasley', 6),
+-- Odontologia (Sector ID 7) - 10 persons
+('Frodo Baggins', 7), ('Gandalf The Grey', 7), ('Aragorn Elessar', 7), ('Legolas Greenleaf', 7), ('Gimli Son of Gloin', 7), ('Samwise Gamgee', 7), ('Sauron', 7), ('Saruman The White', 7), ('Gollum', 7), ('Bilbo Baggins', 7),
+-- Infraestrutura (Sector ID 8) - 10 persons
+('Rick Sanchez', 8), ('Morty Smith', 8), ('Summer Smith', 8), ('Beth Smith', 8), ('Jerry Smith', 8), ('Birdperson', 8), ('Squanchy', 8), ('Mr. Poopybutthole', 8), ('Evil Morty', 8), ('Pickle Rick', 8),
+-- Serviços (Sector ID 9) - 10 persons
+('Michael Scott', 9), ('Dwight Schrute', 9), ('Jim Halpert', 9), ('Pam Beesly', 9), ('Kevin Malone', 9), ('Angela Martin', 9), ('Oscar Martinez', 9), ('Stanley Hudson', 9), ('Phyllis Vance', 9), ('Meredith Palmer', 9);
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `extensions`
+--
+LOCK TABLES `extensions` WRITE;
+INSERT INTO `extensions` (`number`, `type`, `sector_id`, `person_id`, `status`) VALUES
+-- Gerência (Sector ID 1) - 10 extensions
+('1001', 'Interno', 1, 1, 'Atribuído'), ('1002', 'Interno', 1, 2, 'Atribuído'), ('1003', 'Interno', 1, 3, 'Atribuído'), ('1004', 'Externo', 1, 4, 'Atribuído'), ('1005', 'Interno', 1, 5, 'Atribuído'), ('1006', 'Interno', 1, 6, 'Vago'), ('1007', 'Externo', 1, 7, 'Vago'), ('1008', 'Interno', 1, 8, 'Vago'), ('1009', 'Interno', 1, 9, 'Atribuído'), ('1010', 'Interno', 1, 10, 'Atribuído'),
+-- NTI (Sector ID 2) - 10 extensions
+('2001', 'Interno', 2, 11, 'Atribuído'), ('2002', 'Interno', 2, 12, 'Atribuído'), ('2003', 'Interno', 2, 13, 'Vago'), ('2004', 'Externo', 2, 14, 'Atribuído'), ('2005', 'Interno', 2, 15, 'Atribuído'), ('2006', 'Interno', 2, 16, 'Vago'), ('2007', 'Externo', 2, 17, 'Atribuído'), ('2008', 'Interno', 2, 18, 'Vago'), ('2009', 'Interno', 2, 19, 'Atribuído'), ('2010', 'Interno', 2, 20, 'Atribuído'),
+-- Administrativo (Sector ID 3) - 10 extensions
+('3001', 'Interno', 3, 21, 'Atribuído'), ('3002', 'Interno', 3, 22, 'Vago'), ('3003', 'Interno', 3, 23, 'Atribuído'), ('3004', 'Externo', 3, 24, 'Atribuído'), ('3005', 'Interno', 3, 25, 'Vago'), ('3006', 'Interno', 3, 26, 'Atribuído'), ('3007', 'Externo', 3, 27, 'Atribuído'), ('3008', 'Interno', 3, 28, 'Vago'), ('3009', 'Interno', 3, 29, 'Atribuído'), ('3010', 'Interno', 3, 30, 'Atribuído'),
+-- Comunicação (Sector ID 4) - 10 extensions
+('4001', 'Interno', 4, 31, 'Atribuído'), ('4002', 'Interno', 4, 32, 'Atribuído'), ('4003', 'Interno', 4, 33, 'Atribuído'), ('4004', 'Externo', 4, 34, 'Vago'), ('4005', 'Interno', 4, 35, 'Atribuído'), ('4006', 'Interno', 4, 36, 'Vago'), ('4007', 'Externo', 4, 37, 'Atribuído'), ('4008', 'Interno', 4, 38, 'Vago'), ('4009', 'Interno', 4, 39, 'Atribuído'), ('4010', 'Interno', 4, 40, 'Atribuído'),
+-- Programação (Sector ID 5) - 10 extensions
+('5001', 'Interno', 5, 41, 'Vago'), ('5002', 'Interno', 5, 42, 'Atribuído'), ('5003', 'Interno', 5, 43, 'Atribuído'), ('5004', 'Externo', 5, 44, 'Vago'), ('5005', 'Interno', 5, 45, 'Atribuído'), ('5006', 'Interno', 5, 46, 'Atribuído'), ('5007', 'Externo', 5, 47, 'Vago'), ('5008', 'Interno', 5, 48, 'Atribuído'), ('5009', 'Interno', 5, 49, 'Atribuído'), ('5010', 'Interno', 5, 50, 'Vago'),
+-- Alimentação (Sector ID 6) - 10 extensions
+('6001', 'Interno', 6, 51, 'Atribuído'), ('6002', 'Interno', 6, 52, 'Atribuído'), ('6003', 'Interno', 6, 53, 'Vago'), ('6004', 'Externo', 6, 54, 'Atribuído'), ('6005', 'Interno', 6, 55, 'Vago'), ('6006', 'Interno', 6, 56, 'Atribuído'), ('6007', 'Externo', 6, 57, 'Atribuído'), ('6008', 'Interno', 6, 58, 'Vago'), ('6009', 'Interno', 6, 59, 'Atribuído'), ('6010', 'Interno', 6, 60, 'Atribuído'),
+-- Odontologia (Sector ID 7) - 10 extensions
+('7001', 'Interno', 7, 61, 'Atribuído'), ('7002', 'Interno', 7, 62, 'Vago'), ('7003', 'Interno', 7, 63, 'Atribuído'), ('7004', 'Externo', 7, 64, 'Atribuído'), ('7005', 'Interno', 7, 65, 'Vago'), ('7006', 'Interno', 7, 66, 'Atribuído'), ('7007', 'Externo', 7, 67, 'Atribuído'), ('7008', 'Interno', 7, 68, 'Vago'), ('7009', 'Interno', 7, 69, 'Atribuído'), ('7010', 'Interno', 7, 70, 'Atribuído'),
+-- Infraestrutura (Sector ID 8) - 10 extensions
+('8001', 'Interno', 8, 71, 'Atribuído'), ('8002', 'Interno', 8, 72, 'Atribuído'), ('8003', 'Interno', 8, 73, 'Vago'), ('8004', 'Externo', 8, 74, 'Atribuído'), ('8005', 'Interno', 8, 75, 'Vago'), ('8006', 'Interno', 8, 76, 'Atribuído'), ('8007', 'Externo', 8, 77, 'Atribuído'), ('8008', 'Interno', 8, 78, 'Vago'), ('8009', 'Interno', 8, 79, 'Atribuído'), ('8010', 'Interno', 8, 80, 'Atribuído'),
+-- Serviços (Sector ID 9) - 10 extensions
+('9001', 'Interno', 9, 81, 'Atribuído'), ('9002', 'Interno', 9, 82, 'Vago'), ('9003', 'Interno', 9, 83, 'Atribuído'), ('9004', 'Externo', 9, 84, 'Atribuído'), ('9005', 'Interno', 9, 85, 'Vago'), ('9006', 'Interno', 9, 86, 'Atribuído'), ('9007', 'Externo', 9, 87, 'Atribuído'), ('9008', 'Interno', 9, 88, 'Vago'), ('9009', 'Interno', 9, 89, 'Atribuído'), ('9010', 'Interno', 9, 90, 'Atribuído');
+UNLOCK TABLES;
+
 -- Re-enable foreign key checks
 SET FOREIGN_KEY_CHECKS=1;
 
