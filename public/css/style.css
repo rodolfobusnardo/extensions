@@ -400,6 +400,12 @@ body {
     text-align: center;
 }
 
+.sector-table-scroll-wrapper { /* New wrapper for scrolling */
+    max-height: 250px; /* Approximate height for 7 lines + header, adjust as needed */
+    overflow-y: auto;
+    border-bottom: 1px solid #eee; /* Optional: if table rows don't have bottom border on last item */
+}
+
 .sector-extension-table {
     width: 100%;
     border-collapse: collapse;
@@ -410,13 +416,16 @@ body {
 .sector-extension-table td {
     text-align: left;
     padding: 8px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee; /* Kept for rows */
 }
 
-.sector-extension-table th {
-    background-color: #e9ecef;
+.sector-extension-table thead th { /* Sticky header */
+    position: sticky;
+    top: 0;
+    background-color: #e9ecef; /* Ensure background to cover scrolling content */
     font-weight: bold;
     color: #333;
+    z-index: 1; /* Ensures header stays above scrolling content */
 }
 
 .sector-extension-table td:last-child { /* Coluna do ramal */

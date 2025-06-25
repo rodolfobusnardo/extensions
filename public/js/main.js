@@ -53,6 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
             sectorTitle.textContent = escapeHTML(sector.sector_name);
             sectorTableWrapper.appendChild(sectorTitle);
 
+            // Create a wrapper for the table to apply scrolling
+            const scrollWrapper = document.createElement('div');
+            scrollWrapper.classList.add('sector-table-scroll-wrapper');
+
             const table = document.createElement('table');
             table.classList.add('sector-extension-table');
 
@@ -66,7 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
             headerRow.appendChild(thExtension);
 
             const tbody = table.createTBody();
-            const membersToShow = sector.members.slice(0, 7); // Limite de 7 membros
+            // const membersToShow = sector.members.slice(0, 7); // LIMITE REMOVIDO - Mostrar todos
+            const membersToShow = sector.members;
 
             if (membersToShow.length > 0) {
                 membersToShow.forEach(member => {
@@ -85,7 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 cellEmpty.style.fontStyle = 'italic';
             }
 
-            sectorTableWrapper.appendChild(table);
+            scrollWrapper.appendChild(table); // Add table to scroll wrapper
+            sectorTableWrapper.appendChild(scrollWrapper); // Add scroll wrapper to main wrapper
             sectorsContainer.appendChild(sectorTableWrapper);
         });
     }
