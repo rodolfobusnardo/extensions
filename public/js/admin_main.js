@@ -254,6 +254,13 @@ function initPersonManagement() {
     const assignModalTitle = document.getElementById('assign-modal-title');
     const assignExtensionMessage = document.getElementById('assign-extension-message');
 
+    // Search functionality elements
+    const personSearchInput = document.getElementById('person-search-input');
+    const personSearchBtn = document.getElementById('person-search-btn'); // Optional if live search is primary
+    const personClearSearchBtn = document.getElementById('person-clear-search-btn');
+    let personSearchTimeout = null;
+
+
     function showMessage(element, message, isSuccess) {
         if (!element) return;
         element.textContent = message;
@@ -575,7 +582,73 @@ function initPersonManagement() {
         loadSectorsForPersonForm();
     }
 
-    if(personsTableBody) fetchPersons();
+    function filterPersonsTable(searchTerm) {
+        if (!personsTableBody) return;
+        const term = searchTerm.toLowerCase().trim();
+        let foundVisible = false;
+
+        // Always remove an old "no results" row before filtering
+        const oldNoResultsRow = personsTableBody.querySelector('.no-results-row');
+        if (oldNoResultsRow) {
+            oldNoResultsRow.remove();
+        }
+
+        const allRows = personsTableBody.querySelectorAll('tr:not(.no-results-row)'); // Exclude potential leftover
+
+        allRows.forEach(row => {
+            // Check if the row is a header or other non-data row if necessary, though current structure is simple
+            if (row.cells.length < 4) return; // Basic check for data row structure
+
+            const nameText = row.cells[1] ? row.cells[1].textContent.toLowerCase() : '';
+            const sectorText = row.cells[2] ? row.cells[2].textContent.toLowerCase() : '';
+            const extensionText = row.cells[3] ? row.cells[3].textContent.toLowerCase() : '';
+
+            if (nameText.includes(term) || sectorText.includes(term) || extensionText.includes(term)) {
+                row.style.display = '';
+                foundVisible = true;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        if (!foundVisible && term !== '') {
+            // Add a "no results" row if no data rows are visible and there was a search term
+            const noResultsRow = personsTableBody.insertRow(); // Add to the end
+            noResultsRow.classList.add('no-results-row');
+            const cell = noResultsRow.insertCell();
+            cell.colSpan = 5; // Match number of columns in persons table
+            cell.style.textAlign = 'center';
+            cell.style.fontStyle = 'italic';
+            cell.textContent = `Nenhum resultado encontrado para "${escapeJSHTML(term)}".`;
+        }
+    }
+
+    if (personSearchInput) {
+        personSearchInput.addEventListener('input', function() {
+            clearTimeout(personSearchTimeout);
+            const searchTerm = this.value;
+            personSearchTimeout = setTimeout(() => {
+                filterPersonsTable(searchTerm);
+            }, 300); // Debounce for 300ms
+        });
+    }
+
+    if (personSearchBtn) { // Optional: if you want an explicit search button
+        personSearchBtn.addEventListener('click', function() {
+            if(personSearchInput) filterPersonsTable(personSearchInput.value);
+        });
+    }
+
+    if (personClearSearchBtn) {
+        personClearSearchBtn.addEventListener('click', function() {
+            if (personSearchInput) personSearchInput.value = '';
+            filterPersonsTable(''); // Clear search, show all
+            const noResultsRow = personsTableBody.querySelector('.no-results-row');
+            if (noResultsRow) noResultsRow.style.display = 'none'; // Ensure no results message is hidden
+        });
+    }
+
+    if(personsTableBody) fetchPersons(); // Initial load
 }
 
 // --- Extension Management (Super-Admin) --- //

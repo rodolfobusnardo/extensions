@@ -11,12 +11,10 @@ require_once __DIR__ . '/../src/includes/header_admin.php';
 <div class="admin-card">
     <h3>Adicionar Novo Setor</h3>
     <form id="add-sector-form" class="admin-form">
-        <div class="form-group">
-            <label for="sector-name">Nome do Setor:</label>
-            <input type="text" id="sector-name" name="name" class="form-control" required placeholder="Ex: Financeiro">
-        </div>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Adicionar Setor</button>
+        <div class="form-group form-group-inline">
+            <label for="sector-name" class="sr-only">Nome do Setor:</label> <!-- sr-only for accessibility if label is visually hidden or implied -->
+            <input type="text" id="sector-name" name="name" class="form-control sector-name-input" required placeholder="Nome do Setor (Ex: Financeiro)">
+            <button type="submit" class="btn btn-primary add-sector-button">Adicionar Setor</button>
         </div>
         <div id="add-sector-message" class="form-message" style="display:none; margin-top:10px;"></div>
     </form>

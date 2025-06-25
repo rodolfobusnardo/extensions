@@ -150,6 +150,7 @@ body.admin-area {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 .admin-form .form-control:focus {
     border-color: #80bdff;
@@ -463,7 +464,7 @@ body.admin-area {
 .form-row-flex {
     display: flex;
     gap: 20px; /* Space between form groups */
-    align-items: flex-start; /* Align items to the top if they have different heights */
+    align-items: flex-end; /* Align items to the bottom, useful when elements have labels above them */
 }
 
 .form-row-flex .form-group {
@@ -477,5 +478,65 @@ body.admin-area {
         flex-direction: column; /* Stack them vertically on smaller screens */
         gap: 0; /* Reset gap or adjust as needed for stacked layout */
     }
-    /* .form-row-flex .form-group will naturally take full width when stacked */
+    .form-row-flex .form-group { /* Ensure button group also stacks correctly */
+        width: 100%; /* Take full width when stacked */
+    }
+    .form-row-flex .add-person-submit-button { /* Make button full width when stacked */
+        width: 100%;
+    }
+}
+
+/* Adjustments for the add person form layout */
+.form-row-flex .form-group:has(.add-person-submit-button) { /* Target the form-group containing the button */
+    flex-grow: 0; /* Don't allow this group to grow like the input/select groups */
+    flex-shrink: 0; /* Don't allow it to shrink either, button width should be based on content or fixed */
+}
+
+.form-row-flex .add-person-submit-button {
+    height: calc(2.25rem + 2px); /* Match height of other common form controls */
+    /* Ensure vertical alignment with inputs that have labels above them.
+       If inputs are in form-groups that also contain labels, the parent .form-row-flex
+       should use align-items: flex-end; to align bottoms.
+    */
+}
+
+/* Styles for inline form group (e.g., Add Sector) */
+.form-group-inline {
+    display: flex;
+    align-items: flex-end; /* Align items to the bottom if labels make them uneven, or center */
+    gap: 10px; /* Space between input and button */
+}
+
+.form-group-inline .form-control {
+    flex-grow: 1; /* Input takes available space */
+    /* width: auto; remove fixed width if previously set by .form-control */
+}
+
+.form-group-inline .sector-name-input {
+    flex-grow: 0; /* Do not grow */
+    flex-basis: 20%; /* Input takes 20% (1/5) of the flex container width */
+    height: calc(2.25rem + 2px); /* Standard height matching other filter controls */
+    padding-top: .375rem; /* Adjust padding to vertically center text with fixed height */
+    padding-bottom: .375rem;
+    line-height: 1.5; /* Ensure text is centered if font-size is 1rem */
+}
+
+.form-group-inline .add-sector-button { /* Specific class for the button */
+    flex-shrink: 0; /* Prevent button from shrinking */
+    height: calc(2.25rem + 2px); /* Standard height matching other filter controls */
+    /* Ensure text is vertically centered in button, usually default for buttons if padding is symmetrical or height is sufficient */
+}
+
+
+/* Screen-reader only class for labels that are visually implied */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }

@@ -23,9 +23,10 @@ require_once __DIR__ . '/../src/includes/header_admin.php';
                     <!-- Options for sectors will be populated by JS -->
                 </select>
             </div>
-        </div>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Adicionar Pessoa</button>
+            <div class="form-group"> <!-- Wrapper for button to align with other form groups -->
+                 <label class="sr-only" for="add-person-submit-btn">Adicionar Pessoa</label> <!-- Hidden label for accessibility -->
+                <button type="submit" id="add-person-submit-btn" class="btn btn-primary add-person-submit-button">Adicionar Pessoa</button>
+            </div>
         </div>
         <div id="add-person-message" class="form-message" style="display:none; margin-top:10px;"></div>
     </form>
@@ -34,6 +35,16 @@ require_once __DIR__ . '/../src/includes/header_admin.php';
 <!-- List of Persons -->
 <div class="admin-card">
     <h3>Lista de Pessoas</h3>
+
+    <!-- Search Bar for Persons -->
+    <div class="controls-bar persons-search-bar"> <!-- Reusing controls-bar structure -->
+        <div class="filters"> <!-- Reusing filters class for layout -->
+            <input type="text" id="person-search-input" class="form-control" placeholder="Buscar por nome, setor, ramal...">
+            <button id="person-search-btn" class="btn btn-primary">Buscar</button> <!-- Optional: if live search is too slow, this can trigger it -->
+            <button id="person-clear-search-btn" class="btn btn-secondary">Limpar</button>
+        </div>
+    </div>
+
     <p id="persons-loading" style="text-align:center;">Carregando pessoas...</p>
     <p id="persons-error" class="error-message" style="display:none;"></p>
     <div class="table-responsive"> <!-- For better responsiveness on small screens -->
