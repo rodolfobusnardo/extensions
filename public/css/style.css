@@ -404,6 +404,12 @@ body {
     max-height: 250px; /* Approximate height for 7 lines + header, adjust as needed */
     overflow-y: auto;
     border-bottom: 1px solid #eee; /* Optional: if table rows don't have bottom border on last item */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge (older versions) */
+}
+
+.sector-table-scroll-wrapper::-webkit-scrollbar { /* For Chrome, Safari, and newer Edge */
+    display: none;
 }
 
 .sector-extension-table {
