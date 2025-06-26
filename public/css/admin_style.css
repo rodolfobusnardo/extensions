@@ -306,9 +306,14 @@ body.admin-area {
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
+    box-sizing: border-box; /* Ensure consistent height calculation */
 }
 .controls-bar .btn { /* Ensure buttons in controls bar align well */
     height: calc(2.25rem + 2px);
+    box-sizing: border-box; /* Ensure consistent height calculation */
+    display: inline-flex; /* Helps align text vertically with adjacent inputs */
+    align-items: center;
+    justify-content: center;
 }
 /* If Add button is part of controls-bar but separate from filters div */
 .controls-bar > .btn {
@@ -494,6 +499,7 @@ body.admin-area {
 
 .form-row-flex .add-person-submit-button {
     height: calc(2.25rem + 2px); /* Match height of other common form controls */
+    white-space: nowrap; /* Ensure text "Adicionar Pessoa" stays on one line */
     /* Ensure vertical alignment with inputs that have labels above them.
        If inputs are in form-groups that also contain labels, the parent .form-row-flex
        should use align-items: flex-end; to align bottoms.
