@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 require_once __DIR__ . '/../../src/includes/db.php';
 require_once __DIR__ . '/../../src/includes/session_auth.php';
 
-require_login(['Super-Admin']); // Restricted to Super-Admins
+require_login(['Admin', 'Super-Admin']); // Allow both Admin and Super-Admin
 
 $response = [
     'success' => false,

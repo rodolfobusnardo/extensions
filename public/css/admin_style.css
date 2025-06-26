@@ -500,6 +500,18 @@ body.admin-area {
     */
 }
 
+/* Specific styling for #person-name input */
+#person-name {
+    line-height: 1; /* As requested */
+}
+
+/* Specific styling for the Add Person form container */
+#add-person-form {
+    width: 75%; /* As requested */
+    /* If the form is inside .admin-card, margin: auto; can center it if needed, or default left align is fine */
+}
+
+
 /* Styles for inline form group (e.g., Add Sector) */
 .form-group-inline {
     display: flex;
